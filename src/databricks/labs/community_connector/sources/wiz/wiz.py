@@ -1,6 +1,5 @@
 from typing import Iterator
 import time
-import requests
 from pyspark.sql.types import StructType
 from databricks.labs.community_connector.interface import LakeflowConnect
 from databricks.labs.community_connector.sources.wiz.wiz_schemas import (
@@ -25,7 +24,13 @@ class WizLakeflowConnect(LakeflowConnect):
         self._client_secret = client_secret
         self._token: str | None = None
         self._token_expiry: float = 0.0
-        self._session = requests.Session()
+
+        if client_id == "mock":
+            from databricks.labs.community_connector.sources.wiz.wiz_mock_api import get_mock_api
+            self._session = get_mock_api().get_session()
+        else:
+            import requests
+            self._session = requests.Session()
 
     def _ensure_token(self) -> None:
         if self._token and time.time() < self._token_expiry - 60:
