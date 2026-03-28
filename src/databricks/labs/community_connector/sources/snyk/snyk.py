@@ -169,3 +169,5 @@ class SnykLakeflowConnect(LakeflowConnect):
         raw = self._paginate_rest(url, params)
         records = [self._flatten_jsonapi(r) for r in raw]
         return iter(records), {}
+    #Targets → Issues → Vulnerabilities
+    #That’s why “issues” and “vulnerabilities” are related but not identical — issues represent instances of vulnerabilities found in specific targets.
