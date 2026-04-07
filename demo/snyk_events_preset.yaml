@@ -1,5 +1,8 @@
 # Snyk Lakewatch / DASL preset — silver + gold on top of UC Delta bronze.
 #
+# Lakewatch ingestion streams from the configured bronze object: it must be a Delta table, not a Materialized View
+# (Spark: STREAMING_FROM_MATERIALIZED_VIEW).
+#
 # Bronze contract (see demo/snyk_medallion_pipeline.py → cyber_prod.bronze.snyk_events):
 #   lw_id, time, team_id, data, _raw, _metadata, ingest_time_utc
 #

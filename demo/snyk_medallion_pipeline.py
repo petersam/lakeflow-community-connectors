@@ -19,6 +19,10 @@
 # MAGIC **Lakewatch / DASL:** use `demo/snyk_events_preset.yaml` with `dasl_client.preset_development` to model silver/gold from this bronze.
 # MAGIC
 # MAGIC **Prerequisites:** `cyber_prod.snyk.events` from `snyk_bronze_pipeline`; schema `cyber_prod.bronze` exists.
+# MAGIC
+# MAGIC **Lakewatch:** The bronze output must be a **Delta table**, not a **Materialized View**. Lakewatch streams from the
+# MAGIC datasource; Spark does not support `readStream` from MVs (`STREAMING_FROM_MATERIALIZED_VIEW`). If UC shows this name
+# MAGIC as an MV, replace it with a managed Delta table (e.g. re-run this DLT pipeline as the sole writer, or `CREATE TABLE … AS SELECT` from the MV into a new table and point Lakewatch at that table).
 
 # COMMAND ----------
 
