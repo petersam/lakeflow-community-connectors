@@ -860,16 +860,17 @@ def register_lakeflow_source(spark):
             client_secret  : "..."
             audience       : "wiz-api"           (optional, default shown)
             auth_enabled   : true                (optional, default true)
-
-
+        """
+        print("Using WizGraphQLClientMock with options:", options)
         # 🔥 handle JSON secret
         if "config_json" in options:
             config = json.loads(options["config_json"])
+            print("Using WizGraphQLClientMock with options:", config)
         else:
             config = options
-        """
-        print("Using WizGraphQLClientMock with options:", options)
-        config = options
+            print("Using WizGraphQLClientMock with options:", config)
+
+        #config = options
         return WizGraphQLClientMock(
             base_url=config["base_url"],
             client_id=config.get("client_id"),
