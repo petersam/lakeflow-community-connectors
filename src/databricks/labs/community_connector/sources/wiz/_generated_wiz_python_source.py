@@ -868,6 +868,7 @@ def register_lakeflow_source(spark):
         else:
             config = options
         """
+        print("Using WizGraphQLClientMock with options:", options)
         config = options
         return WizGraphQLClientMock(
             base_url=config["base_url"],

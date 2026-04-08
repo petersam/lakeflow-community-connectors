@@ -157,6 +157,7 @@ def get_mock_wiz_client(options: dict) -> WizGraphQLClientMock:
     else:
         config = options
     """
+    print("Using WizGraphQLClientMock with options:", options)
     config = options
     return WizGraphQLClientMock(
         base_url=config["base_url"],
