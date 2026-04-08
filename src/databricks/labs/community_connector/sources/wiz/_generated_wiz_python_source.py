@@ -892,7 +892,7 @@ def register_lakeflow_source(spark):
     ])
 
     # ── Tables exposed by this connector ─────────────────────────────────────────
-    TABLES = ["wiz_events"]
+    TABLES = ["wiz_security_events"]
 
     # ── GraphQL queries ───────────────────────────────────────────────────────────
 
