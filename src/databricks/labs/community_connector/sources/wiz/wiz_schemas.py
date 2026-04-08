@@ -33,7 +33,7 @@ BRONZE_SCHEMA = StructType([
 ])
 
 # ── Tables exposed by this connector ─────────────────────────────────────────
-TABLES = ["wiz_security_events"]
+TABLES = ["wiz_security_events_v2"]
 
 # ── GraphQL queries ───────────────────────────────────────────────────────────
 
