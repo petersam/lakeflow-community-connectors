@@ -114,7 +114,7 @@ class WizLakeflowConnect(LakeflowConnect):
         self._validate_table(table_name)
         now = datetime.now(timezone.utc)
 
-        if table_name == "wiz_events":
+        if table_name == "wiz_security_events":
             return self._read_all_events(start_offset, now)
         else:
             raise ValueError(f"Unsupported table: {table_name}")
@@ -499,22 +499,6 @@ class WizLakeflowConnect(LakeflowConnect):
     # ─────────────────────────────────────────────────────────────────────────
     # Shared helpers
     # ─────────────────────────────────────────────────────────────────────────
-
-    def _to_bronze2(self, nodes: list[dict], collected_at: datetime) -> list[dict]:
-        """
-        Convert raw API nodes → bronze rows.
-        Same shape as your write_to_bronze() in notebook Step 7,
-        minus the Spark write (the framework does that).
-        """
-        return [
-            {
-                "id":           str(n.get("id", "")),
-                "event_type":   n.get("event_type", ""),
-                "raw":          json.dumps(n, default=str),
-                "collected_at": collected_at,
-            }
-            for n in nodes
-        ]
     
     def _to_bronze(self, nodes: list[dict], collected_at: datetime) -> list[dict]:
         rows = []
@@ -557,7 +541,8 @@ class WizLakeflowConnect(LakeflowConnect):
             rows.append({
                 "dasl_id": dasl_id,
                 "time": time_val,
-                "_raw_json": json.dumps(n, default=str),              # for Lakewatch
+                #"_raw_json": json.dumps(n, default=str),              # for Lakewatch
+                "_raw_json": n,
                 "collected_at": collected_at,
                 "event_type": event_type,
                 "record_id": record_id,
