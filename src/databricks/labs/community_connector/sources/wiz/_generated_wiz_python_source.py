@@ -1632,7 +1632,7 @@ def register_lakeflow_source(spark):
                     "lw_id": lw_id,
                     "time": time_val,
                     #"_raw_json": json.dumps(n, default=str),  
-                    "_raw_json": n,     
+                    "_raw_json": VariantVal(json.dumps(n, default=str).encode("utf-8")),    
                     "collected_at": collected_at,
                     "event_type": event_type,
                     "record_id": record_id,

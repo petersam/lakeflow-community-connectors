@@ -5,7 +5,7 @@ import json
 from datetime import datetime, timedelta, timezone
 from typing import Iterator, Optional, List
 import hashlib
-from pyspark.sql.types import StructType
+from pyspark.sql.types import StructType, VariantVal
 
 #from .wiz_client import get_wiz_client
 from .wiz_client_mock import get_mock_wiz_client
@@ -542,7 +542,7 @@ class WizLakeflowConnect(LakeflowConnect):
                 "lw_id": lw_id,
                 "time": time_val,
                 #"_raw_json": json.dumps(n, default=str),  
-                "_raw_json": n,     
+                "_raw_json": VariantVal(json.dumps(n, default=str).encode("utf-8")),    
                 "collected_at": collected_at,
                 "event_type": event_type,
                 "record_id": record_id,
