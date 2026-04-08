@@ -22,7 +22,7 @@ from pyspark.sql.types import (
 # raw          : full JSON string of the original API record
 # collected_at : when this collector run happened
 BRONZE_SCHEMA = StructType([
-    StructField("dasl_id", StringType(), True),
+    StructField("lw_id", StringType(), True),
     StructField("time", TimestampType(), True),
     StructField("_raw_json", StringType(), True),  # or Variant if supported
     StructField("collected_at", TimestampType(), True),

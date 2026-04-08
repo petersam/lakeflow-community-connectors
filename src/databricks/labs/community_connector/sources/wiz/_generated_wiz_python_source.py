@@ -882,7 +882,7 @@ def register_lakeflow_source(spark):
     ########################################################
 
     BRONZE_SCHEMA = StructType([
-        StructField("dasl_id", StringType(), True),
+        StructField("lw_id", StringType(), True),
         StructField("time", TimestampType(), True),
         StructField("_raw_json", StringType(), True),  # or Variant if supported
         StructField("collected_at", TimestampType(), True),
@@ -1620,22 +1620,21 @@ def register_lakeflow_source(spark):
 
                 record_id = str(n.get("id", ""))
 
-                # ── generate dasl_id ─────────────────────────────────────────
-                dasl_id = self.python_sortable_id(
+                # ── generate lw_id ─────────────────────────────────────────
+                lw_id = self.python_sortable_id(
                     record={"record_id": record_id},
                     time_value=time_val,
                     hash_column_values=[record_id],
                 )
 
                 rows.append({
-                    "dasl_id": dasl_id,
+                    "lw_id": lw_id,
                     "time": time_val,
-                    #"_raw_json": json.dumps(n, default=str),              # for Lakewatch
-                    "_raw_json": n,
+                    "_raw_json": json.dumps(n, default=str),      
                     "collected_at": collected_at,
                     "event_type": event_type,
                     "record_id": record_id,
-                    "_metadata": None            # safe to keep null
+                    "_metadata": None 
                 })
 
             return rows
