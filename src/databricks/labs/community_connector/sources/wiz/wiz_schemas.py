@@ -31,8 +31,8 @@ BRONZE_SCHEMA = StructType([
     StructField("_metadata", StringType(), True),
 ])
 
-# ── Tables exposed by this connector ─────────────────────────────────────────
-TABLES = ["wiz_security_events"]
+# ── Tables exposed by this connector ─────────────────────────────────────────-
+TABLES = ["wiz_security_events_v2"]
 
 # ── GraphQL queries ───────────────────────────────────────────────────────────
 
