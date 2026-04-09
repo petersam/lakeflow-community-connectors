@@ -885,7 +885,7 @@ def register_lakeflow_source(spark):
     BRONZE_SCHEMA = StructType([
         StructField("lw_id", StringType(), True),
         StructField("time", TimestampType(), True),
-        StructField("_raw_json", StringType(), True), 
+        StructField("_raw_json", VariantType(), True), 
         StructField("collected_at", TimestampType(), True),
         StructField("event_type", StringType(), True),
         StructField("record_id", StringType(), True),
