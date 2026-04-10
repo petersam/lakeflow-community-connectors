@@ -25,7 +25,7 @@ from pyspark.sql.types import (
 BRONZE_SCHEMA = StructType([
     StructField("lw_id", StringType(), True),
     StructField("time", TimestampType(), True),
-    StructField("_raw_json", VariantType(), True), 
+    StructField("_raw_json", StringType(), True), 
     StructField("collected_at", TimestampType(), True),
     StructField("event_type", StringType(), True),
     StructField("record_id", StringType(), True),
@@ -33,7 +33,7 @@ BRONZE_SCHEMA = StructType([
 ])
 
 # ── Tables exposed by this connector ─────────────────────────────────────────-
-TABLES = ["wiz_security_events_test"]
+TABLES = ["wiz_security_events"]
 
 # ── GraphQL queries ───────────────────────────────────────────────────────────
 

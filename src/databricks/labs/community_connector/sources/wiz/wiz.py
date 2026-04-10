@@ -114,7 +114,7 @@ class WizLakeflowConnect(LakeflowConnect):
         self._validate_table(table_name)
         now = datetime.now(timezone.utc)
 
-        if table_name == "wiz_security_events_test":
+        if table_name == "wiz_security_events":
             return self._read_all_events(start_offset, now)
         else:
             raise ValueError(f"Unsupported table: {table_name}")
@@ -554,8 +554,8 @@ class WizLakeflowConnect(LakeflowConnect):
             rows.append({
                 "lw_id": lw_id,
                 "time": time_val,
-                #"_raw_json": json.dumps(n, default=str),  
-                "_raw_json": VariantVal.parseJson(safe_json),
+                "_raw_json": json.dumps(n, default=str),  
+                #"_raw_json": VariantVal.parseJson(safe_json),
                 "collected_at": collected_at,
                 "event_type": event_type,
                 "record_id": record_id,
